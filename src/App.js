@@ -1,17 +1,27 @@
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { ThemeProvider, createTheme } from '@mui/material/styles';
-import CssBaseline from '@mui/material/CssBaseline';
-
-const darkTheme = createTheme({
-  palette: {
-    mode: 'dark',
-  },
-});
+import Home from "./Pages/Home";
+import Navbar from "./Pages/Components/Navbar/Navbar";
+import { useState } from "react";
 
 function App() {
+
+  const [mode, setMode] = useState('light')
+  
+  const darkTheme = createTheme({
+    palette: {
+      mode: mode,
+    },
+  });
+
   return (
     <ThemeProvider theme={darkTheme}>
-      <CssBaseline />
-      <main>This app is using the dark mode</main>
+      <Router>
+        <Navbar changeMode={setMode} />
+        <Routes>
+          <Route exact path="/" element={<Home />} />
+        </Routes>
+      </Router>
     </ThemeProvider>
   );
 }
