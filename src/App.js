@@ -3,6 +3,7 @@ import { ThemeProvider, createTheme } from '@mui/material/styles';
 import Home from "./Pages/Home";
 import Navbar from "./Pages/Components/Navbar/Navbar";
 import { useState } from "react";
+import Package from "./Pages/Packages";
 
 function App() {
 
@@ -20,6 +21,7 @@ function App() {
         <Navbar changeMode={setMode} />
         <Routes>
           <Route exact path="/" element={<Home />} />
+          <Route exact path="/package" element={<Package />} />
         </Routes>
       </Router>
     </ThemeProvider>
