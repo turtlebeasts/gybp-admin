@@ -19,7 +19,20 @@ import LightModeIcon from '@mui/icons-material/LightMode';
 import DarkModeIcon from '@mui/icons-material/DarkMode';
 
 const drawerWidth = 240;
-const navItems = ['Home', 'About', 'Contact'];
+const navItems = [
+  {
+    text: "Home",
+    link: '/'
+  },
+  {
+    text: "Package",
+    link: '/package'
+  },
+  {
+    text: "User",
+    link: '/user'
+  },
+];
 
 function DrawerAppBar(props) {
   const { window } = props;
@@ -31,7 +44,7 @@ function DrawerAppBar(props) {
   };
   const handleFadeToggle = () => {
     setFade((prevState) => !prevState);
-    props.changeMode(fade?'light':'dark')
+    props.changeMode(fade ? 'light' : 'dark')
   };
 
   const drawer = (
@@ -42,9 +55,9 @@ function DrawerAppBar(props) {
       <Divider />
       <List>
         {navItems.map((item) => (
-          <ListItem key={item} disablePadding>
-            <ListItemButton component={Link} to={item} sx={{ textAlign: 'center' }}>
-              <ListItemText primary={item} />
+          <ListItem key={item.text} disablePadding>
+            <ListItemButton component={Link} to={item.link} sx={{ textAlign: 'center' }}>
+              <ListItemText primary={item.text} />
             </ListItemButton>
           </ListItem>
         ))}
@@ -77,8 +90,8 @@ function DrawerAppBar(props) {
           </Typography>
           <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
             {navItems.map((item) => (
-              <Button key={item} component={Link} to={item} sx={{ color: '#fff' }}>
-                {item}
+              <Button key={item.text} component={Link} to={item.link} sx={{ color: '#fff' }}>
+                {item.text}
               </Button>
             ))}
           </Box>
@@ -86,9 +99,9 @@ function DrawerAppBar(props) {
             <IconButton onClick={handleFadeToggle}>
               {
                 fade ?
-                  <LightModeIcon />
-                  :
                   <DarkModeIcon />
+                  :
+                  <LightModeIcon sx={{color: 'white'}}/>
               }
             </IconButton>
           </Box>
